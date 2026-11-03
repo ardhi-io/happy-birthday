@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5f0e7">
+<title>For Abang Ed — November 6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f5f0e7;--ink:#291c1c;--wine:#792632;--red:#a7474d;--muted:#8e7770;--line:#c9b9a8;--cream:#fffaf1}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#e7ded2;color:var(--ink);font-family:Georgia,serif}
+body{display:grid;place-items:center;padding:22px 12px}
+button{font:inherit}
+.deck{width:min(100%,520px);height:min(820px,calc(100dvh - 44px));min-height:620px;position:relative;background:var(--paper);border:1px solid #a9998d;box-shadow:0 18px 60px #3c25251c;overflow:hidden}
+.slide{position:absolute;inset:0;padding:clamp(25px,6vw,46px);display:none;overflow:auto;background:var(--paper)}
+.slide.active{display:flex;flex-direction:column;animation:appear .45s ease}
+@keyframes appear{from{opacity:.25;transform:translateY(8px)}to{opacity:1;transform:none}}
+.kicker{font:11px 'DM Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--wine)}
+.script{font-family:'Great Vibes',cursive;color:var(--wine);font-weight:400}
+h1,h2,p{margin-top:0}
+h1{font:600 clamp(38px,9vw,64px)/1.03 'Playfair Display',serif;color:var(--wine)}
+h2{font:italic 500 clamp(31px,7vw,46px)/1.1 'Playfair Display',serif;color:var(--wine)}
+p{font-size:15px;line-height:1.85}
+.small{font:10px 'DM Mono',monospace;letter-spacing:.08em;color:var(--muted)}
+.stars{color:var(--wine);letter-spacing:.3em}
+.rule{height:1px;background:var(--line);margin:18px 0}
+.center{align-items:center;justify-content:center;text-align:center}
+.cover{justify-content:space-between;text-align:center}
+.cover .cutout{height:48%;max-width:100%;object-fit:contain;mix-blend-mode:multiply;margin:8px auto -8px}
+.cover h1{font-size:clamp(48px,12vw,78px);margin:0}
+.cover .year{font:11px 'DM Mono',monospace;letter-spacing:.2em;color:var(--muted)}
+.corner{position:absolute;font:11px 'DM Mono',monospace;color:var(--wine)}
+.corner.a{top:17px;left:18px}.corner.b{bottom:17px;right:18px}
+.calendar-title{display:flex;align-items:end;justify-content:space-between;border-bottom:2px solid var(--ink);padding-bottom:14px}
+.calendar-title .month{font:italic 44px 'Playfair Display',serif;color:var(--wine)}
+.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin:25px 0}
+.calendar span{aspect-ratio:1;display:grid;place-items:center;font:12px 'DM Mono',monospace;border:1px solid #dfd3c7}
+.calendar .day{border:0;color:var(--muted);font-size:10px}
+.calendar .birthday{background:var(--wine);color:white;border-radius:50%;font-weight:bold}
+.photo{width:100%;max-height:54%;object-fit:cover;border:8px solid var(--cream);box-shadow:0 4px 16px #39221b20;transform:rotate(-1deg)}
+.photo.portrait{height:58%;object-position:center 28%}
+.photo-strip{width:100%;max-height:64%;object-fit:contain;background:#171414;padding:8px}
+.letter{background:var(--cream);border:1px solid #d7c8b7;padding:22px 20px;box-shadow:5px 5px 0 #e4d7c8}
+.letter p{font-size:14px;line-height:1.9}
+.side-note{border-left:3px solid var(--wine);padding:4px 0 4px 15px;color:#5e4a45;font-style:italic}
+.heart-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+.heart{background:var(--wine);color:#fff8ed;min-height:112px;display:grid;place-items:center;text-align:center;padding:14px;clip-path:polygon(50% 100%,8% 48%,8% 27%,18% 10%,36% 7%,50% 22%,64% 7%,82% 10%,92% 27%,92% 48%);font:12px 'DM Mono',monospace}
+.song-card{border:1px solid var(--wine);padding:22px;background:#fffaf1;margin-top:25px}
+.record{width:155px;height:155px;border-radius:50%;margin:4px auto 20px;background:repeating-radial-gradient(circle,#171313 0 2px,#30292a 3px 4px);display:grid;place-items:center}
+.record:after{content:"";width:45px;height:45px;background:var(--paper);border-radius:50%;border:1px solid #9b8a7b}
+.song-title{font:italic 25px 'Playfair Display',serif;color:var(--wine)}
+.signature{font:italic 23px 'Great Vibes',cursive;color:var(--wine)}
+.controls{position:absolute;z-index:5;bottom:12px;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:0 16px;pointer-events:none}
+.controls button,.music{pointer-events:auto;border:1px solid var(--wine);background:#f8f2e9;color:var(--wine);padding:9px 13px;font:10px 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.controls button:disabled{opacity:.25;cursor:default}
+.counter{font:10px 'DM Mono',monospace;color:var(--muted);background:#f5f0e7dd;padding:7px}
+.music-wrap{position:absolute;top:13px;right:13px;z-index:6}
+.music{font-size:9px;padding:8px 10px}
+.music.playing{background:var(--wine);color:white}
+.footer{margin-top:auto;padding-top:18px;font:9px 'DM Mono',monospace;color:var(--muted);letter-spacing:.12em;text-align:center}
+@media(max-width:420px){body{padding:0;background:var(--paper)}.deck{height:100dvh;min-height:570px;border:0;width:100%}.slide{padding:32px 25px 66px}.photo-strip{max-height:58%}.letter{padding:17px}.letter p{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.slide.active{animation:none}}
+</style>
+</head>
+<body>
+<main class="deck" aria-label="Birthday scrapbook for Abang Ed">
+  <div class="music-wrap"><button class="music" id="musicBtn" type="button">♫ play song</button></div>
+
+  <section class="slide active cover center">
+    <span class="corner a">A LITTLE GIFT / 01</span>
+    <div>
+      <div class="kicker">this boy deserves a day</div>
+      <img class="cutout" src="assets/cover-cutout.png" alt="A cutout portrait of Abang Ed">
+      <div class="script" style="font-size:42px;margin-bottom:-5px">happy birthday</div>
+      <h1>Abang Ed</h1>
+      <div class="year">NOVEMBER 06 · A DAY FOR YOU</div>
+    </div>
+    <div class="footer">made with love, from your little sibling</div>
+    <span class="corner b">♡ OLYNNE</span>
+  </section>
+
+  <section class="slide">
+    <div class="calendar-title"><span class="month">November</span><span class="kicker">2026 / birthday month</span></div>
+    <p class="small" style="margin-top:18px">A LITTLE CIRCLE AROUND A VERY IMPORTANT DAY.</p>
+    <div class="calendar" aria-label="November 2026 calendar">
+      <span class="day">SUN</span><span class="day">MON</span><span class="day">TUE</span><span class="day">WED</span><span class="day">THU</span><span class="day">FRI</span><span class="day">SAT</span>
+      <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span class="birthday">6</span><span>7</span>
+      <span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+      <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span>
+      <span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span>
+      <span>29</span><span>30</span>
+    </div>
+    <div class="side-note">the world got a little more interesting on this day.</div>
+    <div class="footer">06 — 11 — 2026</div>
+  </section>
+
+  <section class="slide center">
+    <div class="kicker">the celebration starts here</div>
+    <h2 style="font-size:clamp(42px,10vw,65px);margin:18px 0 8px">Happy Birthday!</h2>
+    <img class="photo portrait" src="assets/portrait-glasses.jpg" alt="Abang Ed wearing glasses">
+    <p style="color:var(--wine);font:italic 17px 'Playfair Display',serif;margin:18px 0 0">to my favorite abang, Ed ♡</p>
+    <div class="footer">ANOTHER YEAR OF YOU. HOW LUCKY.</div>
+  </section>
+
+  <section class="slide center">
+    <div class="kicker">little pieces of a memory</div>
+    <h2 style="margin:13px 0 18px">Photomatic!</h2>
+    <img class="photo-strip" src="assets/photomatic.png" alt="A two-frame photomatic keepsake">
+    <p class="small" style="margin-top:18px">one for the album, and one for the heart.</p>
+    <div class="footer">A MOMENT WORTH KEEPING</div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">a note from your little sibling</div>
+    <h2 style="margin:12px 0 18px">Dear Abang Ed,</h2>
+    <div class="letter">
+      <p>happy birthday, abang ed!! i seneng banget bisa ikut ngerayain hari spesial u. semoga di umur yang baru ini, banyak hal baik dateng ke hidup u, satu per satu, bahkan hal-hal kecil yang mungkin selama ini u tunggu.</p>
+      <p>thank u for being my abang. mungkin i nggak selalu jago bilang hal-hal manis, but i really hope u know how much i appreciate having u in my life. i hope u selalu punya alasan buat senyum, punya tempat buat pulang kalau lagi capek, and people who treat u with the same kindness u deserve.</p>
+      <p>please take care of yourself, eat well, get enough rest, and don't be too hard on yourself, okay? u deserve good things too.</p>
+      <p>i sayang u, abang. happy birthday once again :3</p>
+      <div class="signature">your sweetest little sibling,<br>Olynne ♡</div>
+    </div>
+    <div class="footer">WRITTEN WITH A LOT OF LOVE</div>
+  </section>
+
+  <section class="slide center">
+    <div class="kicker">my favorite kind of picture</div>
+    <h2 style="margin:14px 0 20px">Us, in our own little world.</h2>
+    <img class="photo" src="assets/together-cat.jpg" alt="A shared keepsake picture with a cat">
+    <p style="margin:18px 0 0;font:italic 16px 'Playfair Display',serif;color:var(--wine)">some memories don't need a special occasion.</p>
+    <div class="footer">A LITTLE MEMORY, KEPT CLOSE</div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">a few things i wish for you</div>
+    <h2 style="margin:12px 0 0">My hopes<br>for you.</h2>
+    <p class="small">not big wishes only. the little ones, too.</p>
+    <div class="heart-grid">
+      <div class="heart">GOOD HEALTH<br>ALWAYS</div>
+      <div class="heart">MORE REASONS<br>TO SMILE</div>
+      <div class="heart">DREAMS THAT<br>COME TRUE</div>
+      <div class="heart">PEACE OF<br>MIND</div>
+    </div>
+    <p>i hope life is gentle with u. semoga semua usaha u ketemu jalannya, semua doa baik u menemukan waktunya, and may this year be kinder than the last.</p>
+    <div class="footer">ONLY GOOD THINGS FOR YOU</div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">one more thing i want u to know</div>
+    <h2 style="margin:12px 0 18px">Dear my brother,</h2>
+    <div class="letter">
+      <p>i know life won't always be easy, and i know there will be days when everything feels a little too much. but i hope u never forget that u don't have to figure everything out in one day.</p>
+      <p>take your time, abang. celebrate your small wins, forgive yourself for the things that didn't go as planned, and keep going at your own pace. i’ll always be cheering for u, even from the little corner where i am.</p>
+      <p>thank u for being part of my story. i'm really lucky that i get to call u my abang. here's to more birthdays, more silly moments, and more memories we haven't made yet.</p>
+      <p>love u lots, abang ed. jangan lupa bahagia, okay? ♡</p>
+      <div class="signature">always your little one,<br>Olynne</div>
+    </div>
+    <div class="footer">YOU'LL ALWAYS HAVE A LITTLE FAN HERE</div>
+  </section>
+
+  <section class="slide center">
+    <div class="stars">✦ · ✧ · ★ · ✧ · ✦</div>
+    <h2 style="font-size:clamp(44px,10vw,65px);margin:18px 0 4px">A year of<br>good things.</h2>
+    <p style="max-width:340px">for every new place u go, every dream u chase, and every version of yourself u're still becoming — i hope the world makes room for all of it.</p>
+    <div class="rule" style="width:70%"></div>
+    <p class="small">KEEP GROWING. KEEP LAUGHING. KEEP BEING YOU.</p>
+    <div class="footer">WITH ALL MY BEST WISHES</div>
+  </section>
+
+  <section class="slide center">
+    <div class="kicker">a song for my dearest brother</div>
+    <div class="record" aria-hidden="true"></div>
+    <div class="song-title">Ruang Baru</div>
+    <p style="margin:6px 0 2px">Barsena Besthandi</p>
+    <p class="small">original soundtrack · my annoying brother</p>
+    <div class="rule" style="width:75%"></div>
+    <p style="max-width:330px">some songs say the things we don't always know how to put into words. this one's here for you, abang.</p>
+    <div class="footer">PRESS “PLAY SONG” ABOVE WHEN READY ♡</div>
+  </section>
+
+  <section class="slide center">
+    <div class="stars">★ ★ ★</div>
+    <h2 style="font-size:clamp(43px,10vw,65px);margin:22px 0 12px">The best part<br>of today is you.</h2>
+    <img class="photo portrait" src="assets/portrait-white.jpg" alt="A portrait of Abang Ed">
+    <p style="font:italic 17px 'Playfair Display',serif;color:var(--wine);margin:18px 0 0">happy birthday, abang. stay happy, okay?</p>
+    <div class="footer">THIS PAGE IS JUST FOR YOU</div>
+  </section>
+
+  <section class="slide center">
+    <div class="stars">✦ ✧ ✦</div>
+    <div class="script" style="font-size:48px;margin-top:30px">that's all, abang!</div>
+    <h2 style="font-size:clamp(42px,10vw,62px);margin:5px 0 15px">I love you.</h2>
+    <p style="max-width:330px">i hope u had a little smile while going through this. this is just a small gift, but it comes with lots and lots of love.</p>
+    <div class="rule" style="width:75%"></div>
+    <p class="small">HAPPY 6TH OF NOVEMBER, ABANG ED.</p>
+    <div class="signature" style="font-size:30px;margin-top:22px">from your sweetest little sibling,<br>Olynne ♡</div>
+    <div class="footer">END OF THIS LITTLE SCRAPBOOK · BEGINNING OF ANOTHER YEAR</div>
+  </section>
+
+  <nav class="controls" aria-label="Slide navigation">
+    <button id="prev" type="button" disabled>← back</button>
+    <span class="counter" id="counter">01 / 12</span>
+    <button id="next" type="button">next →</button>
+  </nav>
+  <audio id="birthdaySong" preload="none" loop>
+    <source src="ruang-baru.mp3" type="audio/mpeg">
+  </audio>
+</main>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const prev=document.getElementById('prev'), next=document.getElementById('next'), counter=document.getElementById('counter');
+let current=0;
+function showSlide(n){
+  current=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>s.classList.toggle('active',i===current));
+  prev.disabled=current===0;
+  next.disabled=current===slides.length-1;
+  next.textContent=current===slides.length-1?'the end ♡':'next →';
+  counter.textContent=String(current+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');
+}
+prev.addEventListener('click',()=>showSlide(current-1));
+next.addEventListener('click',()=>showSlide(current+1));
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')showSlide(current+1);if(e.key==='ArrowLeft')showSlide(current-1)});
+let touchX=0;
+document.querySelector('.deck').addEventListener('touchstart',e=>{touchX=e.changedTouches[0].screenX},{passive:true});
+document.querySelector('.deck').addEventListener('touchend',e=>{const dx=e.changedTouches[0].screenX-touchX;if(Math.abs(dx)>65)showSlide(current+(dx<0?1:-1))},{passive:true});
+const audio=document.getElementById('birthdaySong'), musicBtn=document.getElementById('musicBtn');
+musicBtn.addEventListener('click',async()=>{
+  if(audio.paused){
+    try{await audio.play();musicBtn.textContent='Ⅱ pause song';musicBtn.classList.add('playing')}
+    catch(err){musicBtn.textContent='add song file first';}
+  }else{audio.pause();musicBtn.textContent='♫ play song';musicBtn.classList.remove('playing')}
+});
+audio.addEventListener('ended',()=>{musicBtn.textContent='♫ play song';musicBtn.classList.remove('playing')});
+</script>
+</body>
+</html>
